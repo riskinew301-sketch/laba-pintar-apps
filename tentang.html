@@ -18,22 +18,25 @@
         </header>
 
         <div class="details" style="text-align: center; background: #fff; padding: 20px;">
-            <h3 style="color: #764ba2;">Tim Pengembang</h3>
-            <p style="margin-bottom: 20px; color: #666;">Project ini dibuat untuk memenuhi Tugas UAS Technopreneurship.</p>
+            <h3 style="color: #764ba2; margin-bottom: 10px;">Tim Pengembang</h3>
+            <p style="margin-bottom: 20px; color: #666;">Klik pada kartu nama untuk melihat profil lengkap.</p>
             
-            <div style="background: #f0f4f8; padding: 15px; border-radius: 10px; margin-bottom: 10px; text-align: left;">
-                <strong> Rizqy Naufal Pradana</strong><br>
-                <small>NIM: 241110088 | Lead Developer</small>
+            <div class="team-card" onclick="bukaProfil('rizqy')">
+                <strong>Rizqy Naufal Pradana</strong><br>
+                <small>NIM: 241110088 | Leader Developer</small>
+                <span class="click-hint">Klik Detail</span>
             </div>
 
-            <div style="background: #f0f4f8; padding: 15px; border-radius: 10px; margin-bottom: 10px; text-align: left;">
-                <strong> K Bayu Nugroho</strong><br>
-                <small>NIM: 241... | UI/UX Designer</small>
+            <div class="team-card" onclick="bukaProfil('bayu')">
+                <strong>K Bayu Nugroho</strong><br>
+                <small>NIM: 241XXXXXX | UI/UX Designer</small>
+                <span class="click-hint">Klik Detail</span>
             </div>
 
-            <div style="background: #f0f4f8; padding: 15px; border-radius: 10px; margin-bottom: 10px; text-align: left;">
-                <strong> M Yasir Al Fatah</strong><br>
-                <small>NIM: X241... | Researcher</small>
+            <div class="team-card" onclick="bukaProfil('yasir')">
+                <strong>M Yasir Al Fatah</strong><br>
+                <small>NIM: X241XXXXX | Researcher</small>
+                <span class="click-hint">Klik Detail</span>
             </div>
 
             <br>
@@ -44,11 +47,75 @@
         </div>
 
         <footer>
-            <p>&copy; 2024 Tim Laba Pintar. Projek Technopreneurship</p>
+            <p>&copy; 2024 Tim Laba Pintar. Project Technopreneurship.</p>
         </footer>
     </div>
+
+    <div id="modalOverlay" class="modal-overlay" onclick="tutupProfil()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="tutupProfil()">&times;</span>
+            
+            <img id="p-foto" src="" alt="Foto Profil" class="profile-pic">
+            
+            <h2 id="p-nama">Nama Mahasiswa</h2>
+            <p id="p-nim" style="color: #764ba2; font-weight: bold;">NIM: 00000</p>
+            <hr style="margin: 10px 0; border: 0.5px solid #eee;">
+            
+            <p><strong>Peran:</strong> <span id="p-role">-</span></p>
+            <p><strong>Hobi:</strong> <span id="p-hobi">-</span></p>
+            <p><strong>Cita-cita:</strong> <span id="p-cita">-</span></p>
+            
+            <div style="margin-top: 15px; font-style: italic; color: #555; background: #f0f4f8; padding: 10px; border-radius: 8px;">
+                "<span id="p-quote">Quotes goes here</span>"
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dataTim = {
+            'rizqy': {
+                nama: "Rizqy Naufal Pradana",
+                nim: "241110088",
+                role: "Leader Developer (Coding & System)",
+                hobi: "Ngoding, Main Game, Futsal",
+                cita: "Proogramer/Hardware di Instansi Pemerintah ",
+                quote: "Berjalan Tak Seperti Rencana adalah Jalan Yang Sudah Biasa dan Jalan Satu Satunya Jalani Sebaik Kau Bisa",
+                foto: "https://ui-avatars.com/api/?name=Rizqy+Naufal&background=random&size=128" // Ganti URL ini dengan foto asli nanti
+            },
+            'bayu': {
+                nama: "K Bayu Nugroho",
+                nim: "241XXXXXX", 
+                role: "UI/UX Designer (Tampilan)",
+                hobi: "Desain Grafis, Fotografi",
+                cita: "Creative Director",
+                quote: "Desain adalah solusi visual.",
+                foto: "https://ui-avatars.com/api/?name=Bayu+Nugroho&background=random&size=128"
+            },
+            'yasir': {
+                nama: "M Yasir Al Fatah",
+                nim: "X241XXXXX",
+                role: "Researcher (Riset Pasar)",
+                hobi: "Membaca, Diskusi",
+                cita: "Konsultan Bisnis",
+                quote: "Data adalah kunci kemenangan.",
+                foto: "https://ui-avatars.com/api/?name=Yasir+Fatah&background=random&size=128"
+            }
+        };
+
+        function bukaProfil(id) {
+            const data = dataTim[id];
+            document.getElementById('p-nama').innerText = data.nama;
+            document.getElementById('p-nim').innerText = "NIM: " + data.nim;
+            document.getElementById('p-role').innerText = data.role;
+            document.getElementById('p-hobi').innerText = data.hobi;
+            document.getElementById('p-cita').innerText = data.cita;
+            document.getElementById('p-quote').innerText = data.quote;
+            document.getElementById('p-foto').src = data.foto;
+            document.getElementById('modalOverlay').style.display = 'flex';
+        }
+        function tutupProfil() {
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+    </script>
 </body>
-
 </html>
-
-
