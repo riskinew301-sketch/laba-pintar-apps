@@ -101,13 +101,15 @@
             <img id="p-foto" src="" alt="Foto Profil">
             
             <h2 id="p-nama" style="margin-bottom: 5px;">Nama</h2>
-            
             <p id="p-ttl" style="color: #764ba2; font-weight: bold; font-size: 14px; margin-bottom: 15px;">TTL</p>
             
             <hr style="margin: 10px 0; border: 0.5px solid #eee;">
             
             <div style="text-align: left; padding: 0 10px; font-size: 13px;">
                 <p style="margin: 8px 0;"><strong>💻 Role:</strong> <br><span id="p-role">-</span></p>
+                
+                <p style="margin: 8px 0;"><strong>🎓 Kampus:</strong> <br><span id="p-kampus" style="color: #2d3436; font-weight:500;">-</span></p>
+                
                 <p style="margin: 8px 0;"><strong>🚀 Hobi:</strong> <br><span id="p-hobi">-</span></p>
                 <p style="margin: 8px 0;"><strong>📍 Alamat:</strong> <br>Yogyakarta, Indonesia</p>
             </div>
@@ -124,6 +126,7 @@
                 nama: "Rizqy Naufal Pradana",
                 ttl: "Gunungkidul, 26 Juli 2006",
                 role: "Pengembang Utama & Analis Sistem",
+                kampus: "Universitas Mercu Buana Yogyakarta",
                 hobi: "Merancang Sistem, Futsal",
                 quote: "Berjalan Tak Seperti Rencana adalah Jalan Yang Sudah Biasa.",
                 foto: "https://raw.githubusercontent.com/riskinew301-sketch/laba-pintar-apps/main/WhatsApp_Image_2026-01-11_at_11.11.05-removebg-preview.png"
@@ -133,13 +136,13 @@
         function bukaProfil(id) {
             const data = dataTim[id];
             if(data) {
-                // Mengambil data dan menaruhnya ke HTML
                 document.getElementById('p-nama').innerText = data.nama;
                 document.getElementById('p-ttl').innerText = data.ttl;
                 document.getElementById('p-role').innerText = data.role;
+                document.getElementById('p-kampus').innerText = data.kampus;
                 document.getElementById('p-hobi').innerText = data.hobi;
                 document.getElementById('p-quote').innerText = data.quote;
-                document.getElementById('p-foto').src = data.foto;                
+                document.getElementById('p-foto').src = data.foto;
                 document.getElementById('modalOverlay').style.display = 'flex';
             } else {
                 console.error("Data error. Cek ID:", id);
