@@ -222,3 +222,18 @@ footer {
     margin-left: auto;
     margin-right: auto;
 }
+#p-foto {
+    width: 120px !important;
+    height: 120px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 4px solid #764ba2 !important;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 20px !important;
+}
+.modal-content {
+    overflow: hidden; 
+    max-width: 320px !important;
+}
