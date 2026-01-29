@@ -211,3 +211,14 @@ footer {
     width: 90%;
     max-width: 350px;
     border-radius: 20px;
+.profile-pic-small {
+    width: 80px; 
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover; 
+    border: 3px solid #764ba2; 
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
