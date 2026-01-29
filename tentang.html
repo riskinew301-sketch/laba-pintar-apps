@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tentang - Laba Pintar</title>
     <link rel="stylesheet" href="desain.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -13,41 +14,40 @@
             <nav style="margin-top: 15px; margin-bottom: 20px;">
                 <a href="index.html" style="color: #555; text-decoration: none; margin: 0 10px;">🏠 Home</a> |
                 <a href="panduan.html" style="color: #555; text-decoration: none; margin: 0 10px;">📖 Panduan</a> |
-                <a href="tentang.html" style="color: #764ba2; font-weight: bold; text-decoration: none; margin: 0 10px;">👥 Tentang</a>
+                <a href="tentang.html" style="color: #764ba2; font-weight: bold; text-decoration: none; margin: 0 10px;">ℹ️ Tentang</a>
             </nav>
         </header>
 
         <div class="details" style="text-align: center; background: #fff; padding: 20px;">
-            <h3 style="color: #764ba2; margin-bottom: 10px;">Tim Pengembang</h3>
-            <p style="margin-bottom: 20px; color: #666;">Klik pada kartu nama untuk melihat profil lengkap.</p>
+            <h3 style="color: #764ba2; margin-bottom: 10px;">Profil Creator</h3>
+            <p style="margin-bottom: 20px; color: #666;">Klik kartu nama untuk melihat detail lengkap.</p>
             
-            <div class="team-card" onclick="bukaProfil('rizqy')">
+            <div class="team-card" onclick="bukaProfil('rizqy')" style="text-align: center; padding-top: 20px;">
+                <img src="https://raw.githubusercontent.com/riskinew301-sketch/laba-pintar-apps/main/WhatsApp_Image_2026-01-11_at_11.11.05-removebg-preview.png" alt="Rizqy" class="profile-pic-small">
+                
                 <strong> Rizqy Naufal Pradana</strong><br>
-                <small>Mahasiswa Informatika Universitas Mercu Buana Yogyakarta</small>
-                <span class="click-hint" style="font-size: 10px; color: #764ba2; float: right;">👆 Klik Detail</span>
-            </div>
-
-            <div class="team-card" onclick="bukaProfil('bayu')">
-                <strong> K Bayu Nugroho</strong><br>
-                <small>Mahasiswa Informatika Universitas Mercu Buana Yogyakarta</small>
-                <span class="click-hint" style="font-size: 10px; color: #764ba2; float: right;">👆 Klik Detail</span>
-            </div>
-
-            <div class="team-card" onclick="bukaProfil('yasir')">
-                <strong> M Yasir Al Fatah</strong><br>
-                <small>Mahasiswa Informatika Universitas Mercu Buana Yogyakarta</small>
-                <span class="click-hint" style="font-size: 10px; color: #764ba2; float: right;">👆 Klik Detail</span>
+                <small>Lead Developer & System Analyst</small>
+                <span class="click-hint" style="font-size: 10px; color: #764ba2; display: block; margin-top: 5px;">👆 Klik Detail</span>
             </div>
 
             <br>
-            <p style="font-size: 12px; color: #888;">
-                Versi Aplikasi: 1.0.0 (Beta)<br>
+            <div style="background: #f0f4f8; padding: 15px; border-radius: 10px; margin-top: 20px; text-align: left;">
+                <h4 style="color: #2d3436; margin-bottom: 5px;">Visi Laba Pintar:</h4>
+                <p style="font-size: 12px; color: #555;">
+                    Platform ini dikembangkan untuk menjawab tantangan manajemen keuangan mikro di era disrupsi. 
+                    Membantu UMKM "Naik Kelas" melalui digitalisasi pencatatan yang simpel dan berdampak.
+                </p>
+            </div>
+
+            <br>
+            <p style="font-size: 11px; color: #888;">
+                Versi Aplikasi: 2.0.1 (Stable)<br>
                 Dibuat di Yogyakarta, Indonesia.
             </p>
         </div>
 
         <footer>
-            <p>&copy; 2024 Tim Laba Pintar. Project UAS Technopreneurship.</p>
+            <p>&copy; 2026 Laba Pintar Dev. <br> Empowering UMKM with Technology.</p>
         </footer>
     </div>
 
@@ -61,9 +61,8 @@
             <p id="p-nim" style="color: #764ba2; font-weight: bold;">NIM: 00000</p>
             <hr style="margin: 10px 0; border: 0.5px solid #eee;">
             
-            <p style="margin: 5px 0;"><strong>Peran:</strong> <br><span id="p-role">-</span></p>
-            <p style="margin: 5px 0;"><strong>Hobi:</strong> <br><span id="p-hobi">-</span></p>
-            <p style="margin: 5px 0;"><strong>Cita-cita:</strong> <br><span id="p-cita">-</span></p>
+            <p style="margin: 5px 0;"><strong>Role:</strong> <br><span id="p-role">-</span></p>
+            <p style="margin: 5px 0;"><strong>Keahlian:</strong> <br><span id="p-hobi">-</span></p>
             
             <div style="margin-top: 15px; font-style: italic; color: #555; background: #f0f4f8; padding: 10px; border-radius: 8px;">
                 "<span id="p-quote">Quotes goes here</span>"
@@ -76,29 +75,10 @@
             'rizqy': {
                 nama: "Rizqy Naufal Pradana",
                 nim: "241110088",
-                role: "Leader Developer (Coding & System)",
-                hobi: "Ngoding, Main Game, Futsal",
-                cita: "Proogramer/Network Engineer di Instansi Pemerintah",
-                quote: "Berjalan Tak Seperti Rencana adalah Jalan Yang Sudah Biasa dan Jalan Satu Satunya Jalani Sebaik Kau Bisa.",
+                role: "Full Stack Developer",
+                hobi: "Oracle SQL, Web Development, System Design",
+                quote: "Berjalan Tak Seperti Rencana adalah Jalan Yang Sudah Biasa.",
                 foto: "https://raw.githubusercontent.com/riskinew301-sketch/laba-pintar-apps/main/WhatsApp_Image_2026-01-11_at_11.11.05-removebg-preview.png"
-            },
-            'bayu': {
-                nama: "K Bayu Nugroho",
-                nim: "241XXXXXX", 
-                role: "UI/UX Designer (Tampilan)",
-                hobi: "Desain Grafis, Fotografi",
-                cita: "Creative Director",
-                quote: "Desain adalah solusi visual.",
-                foto: "https://ui-avatars.com/api/?name=Bayu+Nugroho&background=random&size=128"
-            },
-            'yasir': {
-                nama: "M Yasir Al Fatah",
-                nim: "X241XXXXX", 
-                role: "Researcher (Riset Pasar)",
-                hobi: "Membaca, Diskusi",
-                cita: "Pebisnis",
-                quote: "Data adalah kunci.",
-                foto: "https://ui-avatars.com/api/?name=Yasir+Fatah&background=random&size=128"
             }
         };
 
@@ -109,7 +89,6 @@
                 document.getElementById('p-nim').innerText = "NIM: " + data.nim;
                 document.getElementById('p-role').innerText = data.role;
                 document.getElementById('p-hobi').innerText = data.hobi;
-                document.getElementById('p-cita').innerText = data.cita;
                 document.getElementById('p-quote').innerText = data.quote;
                 document.getElementById('p-foto').src = data.foto;
                 document.getElementById('modalOverlay').style.display = 'flex';
@@ -122,11 +101,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
