@@ -35,14 +35,13 @@ function hitungHarga() {
     profitEl.style.fontWeight = "bold";
 
     let isError = false;
-
     if (marginPersen < 0) {
         profitEl.style.color = "#e53e3e"; 
-        profitEl.innerHTML += "<br><span style='font-size:0.8em; background:#fee2e2; padding:2px 5px; border-radius:4px;'>⚠️ MARGIN JANGAN MINUS!</span>";
+        profitEl.innerHTML += "<br><span style='font-size:0.9em; font-weight:800; color: #c53030;'>⛔ MARGIN JANGAN MINUS!</span>";
         isError = true;
     } else if (profitBersihNyata < 0) {
         profitEl.style.color = "#e53e3e"; 
-        profitEl.innerHTML += "<br><span style='font-size:0.8em; background:#fee2e2; padding:2px 5px; border-radius:4px;'>⚠️ ADMIN TERLALU TINGGI! (Rugi)</span>";
+        profitEl.innerHTML += "<br><span style='font-size:0.9em; font-weight:800; color: #c53030;'>⛔ ADMIN KETINGGIAN! (Rugi)</span>";
         isError = true;
     } else {
         profitEl.style.color = "#2f855a"; 
@@ -50,10 +49,9 @@ function hitungHarga() {
         isError = false;
     }
 
-    // --- BAGIAN KATA-KATA DIGANTI DI SINI ---
     if (isError) {
-        hargaJualEl.innerText = "⛔ PERLU EVALUASI"; // Lebih halus & profesional
-        hargaJualEl.style.color = "#e53e3e";
+        hargaJualEl.innerText = "⛔ PERLU EVALUASI"; 
+        hargaJualEl.style.color = "#c53030";
         hargaJualEl.style.fontSize = "24px";
     } else {
         hargaJualEl.innerText = formatRupiah(hargaJualFinal);
@@ -72,11 +70,12 @@ function simpanKeRiwayat() {
     let profitText = document.getElementById('profitBersih').innerText; 
     
     let status = "aman"; 
-    if (profitText.includes("⚠️")) {
+    // Deteksi icon error baru (⛔)
+    if (profitText.includes("⛔")) {
         status = "rugi";
     }
 
-    let profitClean = profitText.split("⚠️")[0].split("✅")[0].split("<br>")[0].trim();
+    let profitClean = profitText.split("⛔")[0].split("✅")[0].split("<br>")[0].trim();
 
     let dataBaru = {
         id: Date.now(), 
@@ -113,8 +112,8 @@ function tampilkanRiwayat() {
             let teksStatus = "Aman";
             
             if (item.status === "rugi") {
-                warnaStatus = "#e53e3e"; 
-                ikon = "⚠️";
+                warnaStatus = "#e53e3e";
+                ikon = "⛔";
                 teksStatus = "POTENSI RUGI!";
             }
 
