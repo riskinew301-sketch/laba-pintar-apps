@@ -78,27 +78,24 @@ function simpanKeRiwayat() {
     
     tampilkanRiwayat();
     resetForm();
-    
     if(status === "rugi") alert("Disimpan: Hati-hati, produk ini berpotensi RUGI!");
     else alert("Data berhasil disimpan!");
 }
-
 function tampilkanRiwayat() {
     let riwayat = JSON.parse(localStorage.getItem('labaPintarData')) || [];
     let wadah = document.getElementById('list-riwayat');
     let section = document.getElementById('riwayat-section');
-
     if (riwayat.length > 0) {
         section.style.display = "block";
         wadah.innerHTML = "";
-        
         riwayat.forEach(item => {
             let warnaStatus = "#2f855a"; 
             let ikon = "✅";
-            
+            let teksStatus = "Aman"; 
             if (item.status === "rugi") {
                 warnaStatus = "#e53e3e"; 
                 ikon = "⚠️";
+                teksStatus = "Potensi Rugi";
             }
 
             wadah.innerHTML += `
@@ -110,7 +107,8 @@ function tampilkanRiwayat() {
                     <div style="text-align: right;">
                         <span style="color: #2d3748; font-weight:bold;">${item.harga}</span><br>
                         <small style="color: ${warnaStatus}; font-weight:bold;">
-                            ${ikon} Laba: ${item.profit}
+                            ${ikon} Laba: ${item.profit}<br>
+                            <span style="font-size: 0.85em; opacity: 0.9;">(${teksStatus})</span>
                         </small>
                     </div>
                 </div>
@@ -120,7 +118,6 @@ function tampilkanRiwayat() {
         section.style.display = "none";
     }
 }
-
 function hapusSemua() {
     if(confirm("Hapus semua riwayat pencatatan?")) {
         localStorage.removeItem('labaPintarData');
@@ -140,5 +137,3 @@ function resetForm() {
 function formatRupiah(angka) {
     return "Rp " + Math.ceil(angka).toLocaleString('id-ID');
 }
-
-
