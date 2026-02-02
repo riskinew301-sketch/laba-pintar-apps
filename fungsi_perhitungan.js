@@ -35,7 +35,7 @@ function hitungHarga() {
 
     if (marginPersen < 0) {
         profitElement.style.color = "#e53e3e"; 
-        profitElement.innerHTML += "<br><span style='font-size:0.8em; background:#fee2e2; padding:2px 5px; border-radius:4px;'>⚠️ TARGET KEUNTUNGAN JANGAN MINUS!</span>";
+        profitElement.innerHTML += "<br><span style='font-size:0.8em; background:#fee2e2; padding:2px 5px; border-radius:4px;'>⚠️ TARGET KEUNTUNGAN JANGAN MINUS (Rugi)!</span>";
     
     } else if (profitBersihNyata < 0) {
         profitElement.style.color = "#e53e3e"; 
@@ -140,4 +140,5 @@ function resetForm() {
 function formatRupiah(angka) {
     return "Rp " + Math.ceil(angka).toLocaleString('id-ID');
 }
+
 
