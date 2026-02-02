@@ -36,7 +36,6 @@ function hitungHarga() {
 
     let isError = false;
 
-    // --- LOGIKA STATUS (ICON MERAH ⛔) ---
     if (marginPersen < 0) {
         profitEl.style.color = "#e53e3e"; 
         profitEl.innerHTML += "<br><span style='font-size:0.9em; font-weight:800; color: #c53030;'>⛔ MARGIN JANGAN MINUS!</span>";
@@ -115,8 +114,8 @@ function tampilkanRiwayat() {
             let teksStatus = "Aman";
             
             if (item.status === "rugi") {
-                warnaStatus = "#e53e3e"; // Merah
-                ikon = "⛔"; // Icon Merah
+                warnaStatus = "#e53e3e";
+                ikon = "⛔";
                 teksStatus = "POTENSI RUGI!";
             }
 
@@ -181,3 +180,5 @@ function resetForm() {
 function formatRupiah(angka) {
     return "Rp " + Math.ceil(angka).toLocaleString('id-ID');
 }
+
+
