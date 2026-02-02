@@ -50,8 +50,9 @@ function hitungHarga() {
         isError = false;
     }
 
+    // --- BAGIAN KATA-KATA DIGANTI DI SINI ---
     if (isError) {
-        hargaJualEl.innerText = "⛔ CEK INPUT KEMBALI";
+        hargaJualEl.innerText = "⛔ PERLU EVALUASI"; // Lebih halus & profesional
         hargaJualEl.style.color = "#e53e3e";
         hargaJualEl.style.fontSize = "24px";
     } else {
@@ -93,7 +94,7 @@ function simpanKeRiwayat() {
     tampilkanRiwayat();
     resetForm();
     
-    if(status === "rugi") alert("Disimpan: Produk ini BERISIKO TINGGI (Rugi).");
+    if(status === "rugi") alert("Disimpan: Produk ini BERISIKO (Rugi). Harap evaluasi ulang.");
     else alert("Data berhasil disimpan!");
 }
 
