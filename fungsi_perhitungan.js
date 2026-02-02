@@ -33,13 +33,19 @@ function hitungHarga() {
     profitElement.innerText = formatRupiah(profitBersihNyata);
     profitElement.style.fontWeight = "bold";
 
-    if (profitBersihNyata < 0) {
+    // --- LOGIKA DETEKSI 2 JENIS ERROR ---
+    if (marginPersen < 0) {
+        // ERROR TIPE 1: User Input Minus (Kesalahan Input)
+        profitElement.style.color = "#e53e3e"; 
+        profitElement.innerHTML += "<br><span style='font-size:0.8em; background:#fee2e2; padding:2px 5px; border-radius:4px;'>⚠️ MARGIN JANGAN MINUS!</span>";
+    
+    } else if (profitBersihNyata < 0) {
+        // ERROR TIPE 2: Input Positif tapi Rugi (Admin Terlalu Tinggi)
         profitElement.style.color = "#e53e3e"; 
         profitElement.innerHTML += "<br><span style='font-size:0.8em; background:#fee2e2; padding:2px 5px; border-radius:4px;'>⚠️ ADMIN TERLALU TINGGI! (Rugi)</span>";
-    } else if (profitBersihNyata < targetProfit) {
-        profitElement.style.color = "#d69e2e"; 
-        profitElement.innerHTML += "<br><span style='font-size:0.8em; background:#fefcbf; padding:2px 5px; border-radius:4px;'>⚠️ UNTUNG TIPIS (Hati-hati)</span>";
+    
     } else {
+        // AMAN (HIJAU) - Tidak ada lagi warna kuning
         profitElement.style.color = "#2f855a"; 
         profitElement.innerHTML += " ✅ (Aman)";
     }
@@ -55,10 +61,9 @@ function simpanKeRiwayat() {
     let profitText = document.getElementById('profitBersih').innerText; 
     
     let status = "aman"; 
-    if (profitText.includes("Rugi")) {
+    // Deteksi Rugi (baik karena margin minus atau admin tinggi)
+    if (profitText.includes("⚠️")) {
         status = "rugi";
-    } else if (profitText.includes("Tergerus") || profitText.includes("MELESET")) {
-        status = "meleset";
     }
 
     let profitClean = profitText.split("⚠️")[0].split("✅")[0].trim();
@@ -80,7 +85,6 @@ function simpanKeRiwayat() {
     resetForm();
     
     if(status === "rugi") alert("Disimpan: Hati-hati, produk ini berpotensi RUGI!");
-    else if(status === "meleset") alert("Disimpan: Perhatikan margin, keuntungan tergerus admin.");
     else alert("Data berhasil disimpan!");
 }
 
@@ -100,9 +104,6 @@ function tampilkanRiwayat() {
             if (item.status === "rugi") {
                 warnaStatus = "#e53e3e"; 
                 ikon = "⚠️";
-            } else if (item.status === "meleset") {
-                warnaStatus = "#d69e2e"; 
-                ikon = "🔸";
             }
 
             wadah.innerHTML += `
@@ -144,4 +145,3 @@ function resetForm() {
 function formatRupiah(angka) {
     return "Rp " + Math.ceil(angka).toLocaleString('id-ID');
 }
-
