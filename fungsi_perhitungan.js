@@ -38,7 +38,7 @@ function hitungHarga() {
         profitElement.innerHTML += "<br><span style='font-size:0.8em; background:#fee2e2; padding:2px 5px; border-radius:4px;'>⚠️ ADMIN TERLALU TINGGI! (Rugi)</span>";
     } else if (profitBersihNyata < targetProfit) {
         profitElement.style.color = "#d69e2e"; 
-        profitElement.innerHTML += "<br><span style='font-size:0.8em; background:#fefcbf; padding:2px 5px; border-radius:4px;'>⚠️ MELESET (Tergerus)</span>";
+        profitElement.innerHTML += "<br><span style='font-size:0.8em; background:#fefcbf; padding:2px 5px; border-radius:4px;'>⚠️ UNTUNG TIPIS (Hati-hati)</span>";
     } else {
         profitElement.style.color = "#2f855a"; 
         profitElement.innerHTML += " ✅ (Aman)";
@@ -144,3 +144,4 @@ function resetForm() {
 function formatRupiah(angka) {
     return "Rp " + Math.ceil(angka).toLocaleString('id-ID');
 }
+
