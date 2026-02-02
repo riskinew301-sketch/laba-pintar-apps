@@ -35,6 +35,8 @@ function hitungHarga() {
     profitEl.style.fontWeight = "bold";
 
     let isError = false;
+
+    // --- LOGIKA STATUS (ICON MERAH ⛔) ---
     if (marginPersen < 0) {
         profitEl.style.color = "#e53e3e"; 
         profitEl.innerHTML += "<br><span style='font-size:0.9em; font-weight:800; color: #c53030;'>⛔ MARGIN JANGAN MINUS!</span>";
@@ -51,7 +53,7 @@ function hitungHarga() {
 
     if (isError) {
         hargaJualEl.innerText = "⛔ PERLU EVALUASI"; 
-        hargaJualEl.style.color = "#c53030";
+        hargaJualEl.style.color = "#c53030"; // Merah Gelap
         hargaJualEl.style.fontSize = "24px";
     } else {
         hargaJualEl.innerText = formatRupiah(hargaJualFinal);
@@ -75,6 +77,7 @@ function simpanKeRiwayat() {
         status = "rugi";
     }
 
+    // Bersihkan teks profit (Split berdasarkan icon baru)
     let profitClean = profitText.split("⛔")[0].split("✅")[0].split("<br>")[0].trim();
 
     let dataBaru = {
@@ -112,8 +115,8 @@ function tampilkanRiwayat() {
             let teksStatus = "Aman";
             
             if (item.status === "rugi") {
-                warnaStatus = "#e53e3e";
-                ikon = "⛔";
+                warnaStatus = "#e53e3e"; // Merah
+                ikon = "⛔"; // Icon Merah
                 teksStatus = "POTENSI RUGI!";
             }
 
