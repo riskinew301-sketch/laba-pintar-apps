@@ -17,7 +17,6 @@ function hitungHarga() {
     let totalModal = hpp + operasional;
     let targetProfit = totalModal * (marginPersen / 100); 
     let hargaDasar = totalModal + targetProfit; 
-    
     let markupAdmin = hargaDasar * (adminPersen / 100);
     let hargaJualFinal = hargaDasar + markupAdmin;
 
@@ -25,25 +24,40 @@ function hitungHarga() {
     let uangDiterima = hargaJualFinal - potonganAsli;
     let profitBersihNyata = uangDiterima - totalModal;
 
-    document.getElementById('hargaJual').innerText = formatRupiah(hargaJualFinal);
-    document.getElementById('totalModal').innerText = formatRupiah(totalModal);
-    document.getElementById('potonganAdmin').innerText = formatRupiah(potonganAsli);
+    let hargaJualEl = document.getElementById('hargaJual');
+    let profitEl = document.getElementById('profitBersih');
+    let modalEl = document.getElementById('totalModal');
+    let adminEl = document.getElementById('potonganAdmin');
 
-    let profitElement = document.getElementById('profitBersih');
-    profitElement.innerText = formatRupiah(profitBersihNyata);
-    profitElement.style.fontWeight = "bold";
+    modalEl.innerText = formatRupiah(totalModal);
+    adminEl.innerText = formatRupiah(potonganAsli);
+    profitEl.innerText = formatRupiah(profitBersihNyata);
+    profitEl.style.fontWeight = "bold";
+
+    let isError = false;
 
     if (marginPersen < 0) {
-        profitElement.style.color = "#e53e3e"; 
-        profitElement.innerHTML += "<br><span style='font-size:0.8em; background:#fee2e2; padding:2px 5px; border-radius:4px;'>⚠️ TARGET KEUNTUNGAN JANGAN MINUS (Rugi)!</span>";
-    
+        profitEl.style.color = "#e53e3e"; 
+        profitEl.innerHTML += "<br><span style='font-size:0.8em; background:#fee2e2; padding:2px 5px; border-radius:4px;'>⚠️ MARGIN JANGAN MINUS!</span>";
+        isError = true;
     } else if (profitBersihNyata < 0) {
-        profitElement.style.color = "#e53e3e"; 
-        profitElement.innerHTML += "<br><span style='font-size:0.8em; background:#fee2e2; padding:2px 5px; border-radius:4px;'>⚠️ ADMIN TERLALU TINGGI! (Rugi)</span>";
-    
+        profitEl.style.color = "#e53e3e"; 
+        profitEl.innerHTML += "<br><span style='font-size:0.8em; background:#fee2e2; padding:2px 5px; border-radius:4px;'>⚠️ ADMIN TERLALU TINGGI! (Rugi)</span>";
+        isError = true;
     } else {
-        profitElement.style.color = "#2f855a"; 
-        profitElement.innerHTML += " ✅ (Aman)";
+        profitEl.style.color = "#2f855a"; 
+        profitEl.innerHTML += " ✅ (Aman)";
+        isError = false;
+    }
+
+    if (isError) {
+        hargaJualEl.innerText = "⛔ CEK INPUT KEMBALI";
+        hargaJualEl.style.color = "#e53e3e";
+        hargaJualEl.style.fontSize = "24px";
+    } else {
+        hargaJualEl.innerText = formatRupiah(hargaJualFinal);
+        hargaJualEl.style.color = "#2f855a";
+        hargaJualEl.style.fontSize = "32px";
     }
 
     let resultSection = document.getElementById('result');
@@ -61,7 +75,7 @@ function simpanKeRiwayat() {
         status = "rugi";
     }
 
-    let profitClean = profitText.split("⚠️")[0].split("✅")[0].trim();
+    let profitClean = profitText.split("⚠️")[0].split("✅")[0].split("<br>")[0].trim();
 
     let dataBaru = {
         id: Date.now(), 
@@ -78,38 +92,48 @@ function simpanKeRiwayat() {
     
     tampilkanRiwayat();
     resetForm();
-    if(status === "rugi") alert("Disimpan: Hati-hati, produk ini berpotensi RUGI!");
+    
+    if(status === "rugi") alert("Disimpan: Produk ini BERISIKO TINGGI (Rugi).");
     else alert("Data berhasil disimpan!");
 }
+
 function tampilkanRiwayat() {
     let riwayat = JSON.parse(localStorage.getItem('labaPintarData')) || [];
     let wadah = document.getElementById('list-riwayat');
     let section = document.getElementById('riwayat-section');
+
     if (riwayat.length > 0) {
         section.style.display = "block";
         wadah.innerHTML = "";
+        
         riwayat.forEach(item => {
             let warnaStatus = "#2f855a"; 
             let ikon = "✅";
-            let teksStatus = "Aman"; 
+            let teksStatus = "Aman";
+            
             if (item.status === "rugi") {
                 warnaStatus = "#e53e3e"; 
                 ikon = "⚠️";
-                teksStatus = "Potensi Rugi";
+                teksStatus = "POTENSI RUGI!";
             }
+
+            let btnHapus = `<button onclick="hapusSatu(${item.id})" style="background:#fff0f0; border:1px solid #feb2b2; color:red; border-radius:4px; cursor:pointer; padding:5px; margin-left:10px;">🗑️</button>`;
 
             wadah.innerHTML += `
                 <div class="history-item" style="border-left: 5px solid ${warnaStatus}; margin-bottom: 10px; padding: 10px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; border-radius: 4px;">
-                    <div>
+                    <div style="flex-grow: 1;">
                         <strong>${item.nama}</strong><br>
                         <small style="color: #718096;">${item.tanggal}</small>
                     </div>
                     <div style="text-align: right;">
-                        <span style="color: #2d3748; font-weight:bold;">${item.harga}</span><br>
+                        <span style="color: #2d3748; font-weight:bold; font-size:0.9em;">${item.harga}</span><br>
                         <small style="color: ${warnaStatus}; font-weight:bold;">
                             ${ikon} Laba: ${item.profit}<br>
-                            <span style="font-size: 0.85em; opacity: 0.9;">(${teksStatus})</span>
+                            <span style="font-size: 0.8em;">(${teksStatus})</span>
                         </small>
+                    </div>
+                    <div style="margin-left: 5px;">
+                        ${btnHapus}
                     </div>
                 </div>
             `;
@@ -118,8 +142,19 @@ function tampilkanRiwayat() {
         section.style.display = "none";
     }
 }
+
+function hapusSatu(id) {
+    if(confirm("Hapus data ini?")) {
+        let riwayat = JSON.parse(localStorage.getItem('labaPintarData')) || [];
+        let riwayatBaru = riwayat.filter(item => item.id !== id);
+        
+        localStorage.setItem('labaPintarData', JSON.stringify(riwayatBaru));
+        tampilkanRiwayat();
+    }
+}
+
 function hapusSemua() {
-    if(confirm("Hapus semua riwayat pencatatan?")) {
+    if(confirm("Hapus SEMUA riwayat pencatatan?")) {
         localStorage.removeItem('labaPintarData');
         tampilkanRiwayat();
     }
@@ -131,6 +166,12 @@ function resetForm() {
     document.getElementById('operasional').value = '';
     document.getElementById('margin').value = '';
     document.getElementById('adminFee').value = '';
+    
+    let hargaJualEl = document.getElementById('hargaJual');
+    hargaJualEl.innerText = "Rp 0";
+    hargaJualEl.style.color = "#2d3748";
+    hargaJualEl.style.fontSize = "32px";
+    
     document.getElementById('result').style.display = "none";
 }
 
