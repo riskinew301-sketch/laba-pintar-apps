@@ -33,19 +33,15 @@ function hitungHarga() {
     profitElement.innerText = formatRupiah(profitBersihNyata);
     profitElement.style.fontWeight = "bold";
 
-    // --- LOGIKA DETEKSI 2 JENIS ERROR ---
     if (marginPersen < 0) {
-        // ERROR TIPE 1: User Input Minus (Kesalahan Input)
         profitElement.style.color = "#e53e3e"; 
-        profitElement.innerHTML += "<br><span style='font-size:0.8em; background:#fee2e2; padding:2px 5px; border-radius:4px;'>⚠️ MARGIN JANGAN MINUS!</span>";
+        profitElement.innerHTML += "<br><span style='font-size:0.8em; background:#fee2e2; padding:2px 5px; border-radius:4px;'>⚠️ TARGET KEUNTUNGAN JANGAN MINUS!</span>";
     
     } else if (profitBersihNyata < 0) {
-        // ERROR TIPE 2: Input Positif tapi Rugi (Admin Terlalu Tinggi)
         profitElement.style.color = "#e53e3e"; 
         profitElement.innerHTML += "<br><span style='font-size:0.8em; background:#fee2e2; padding:2px 5px; border-radius:4px;'>⚠️ ADMIN TERLALU TINGGI! (Rugi)</span>";
     
     } else {
-        // AMAN (HIJAU) - Tidak ada lagi warna kuning
         profitElement.style.color = "#2f855a"; 
         profitElement.innerHTML += " ✅ (Aman)";
     }
@@ -61,7 +57,6 @@ function simpanKeRiwayat() {
     let profitText = document.getElementById('profitBersih').innerText; 
     
     let status = "aman"; 
-    // Deteksi Rugi (baik karena margin minus atau admin tinggi)
     if (profitText.includes("⚠️")) {
         status = "rugi";
     }
@@ -145,3 +140,4 @@ function resetForm() {
 function formatRupiah(angka) {
     return "Rp " + Math.ceil(angka).toLocaleString('id-ID');
 }
+
