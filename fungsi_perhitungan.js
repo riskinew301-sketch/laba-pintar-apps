@@ -179,6 +179,4 @@ function resetForm() {
 
 function formatRupiah(angka) {
     return "Rp " + Math.ceil(angka).toLocaleString('id-ID');
-}
-
-
+} 
